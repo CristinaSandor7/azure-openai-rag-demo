@@ -18,17 +18,18 @@ builder.Services.AddSingleton(new AzureOpenAIClient(
 
 builder.Services.AddSingleton<SearchIndexService>();
 builder.Services.AddSingleton<RagService>();
+builder.Services.AddSingleton<BlobStorageService>();
 
 var app = builder.Build();
 
 var ragService = app.Services.GetRequiredService<RagService>();
 await ragService.SeedProductsIfEmptyAsync();
 
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.MapAskEndpoints();
 app.MapAdminEndpoints();

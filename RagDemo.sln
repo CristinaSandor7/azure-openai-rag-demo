@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36616.10 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RagDemo", "RagDemo\RagDemo.csproj", "{C301F44E-F2DA-42CD-BED3-AE274589C1BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RagDemo.Functions", "RagDemo.Functions\RagDemo.Functions.csproj", "{2CBF623E-6830-4A69-B896-1434BFA25703}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C301F44E-F2DA-42CD-BED3-AE274589C1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C301F44E-F2DA-42CD-BED3-AE274589C1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C301F44E-F2DA-42CD-BED3-AE274589C1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBF623E-6830-4A69-B896-1434BFA25703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBF623E-6830-4A69-B896-1434BFA25703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBF623E-6830-4A69-B896-1434BFA25703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBF623E-6830-4A69-B896-1434BFA25703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

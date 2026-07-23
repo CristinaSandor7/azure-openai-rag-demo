@@ -1,3 +1,8 @@
-﻿namespace RagDemo.Models;
+﻿using System.Text.Json.Serialization;
 
-public record Product(string Name, string Description);
+namespace RagDemo.Models;
+
+public record Product(
+    [property: JsonPropertyName("name")] string Name,
+    [property: JsonPropertyName("description")] string Description
+);

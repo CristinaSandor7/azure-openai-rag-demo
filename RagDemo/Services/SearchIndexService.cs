@@ -57,4 +57,21 @@ public class SearchIndexService
     {
         return _indexClient.GetSearchClient(_indexName);
     }
+    public async Task DeleteAllDocumentsAsync()
+    {
+        var searchClient = GetSearchClient();
+
+        var response = await searchClient.SearchAsync<SearchProduct>("*", new SearchOptions { Select = { "Id" } });
+        var idsToDelete = new List<string>();
+
+        await foreach (var result in response.Value.GetResultsAsync())
+        {
+            idsToDelete.Add(result.Document.Id);
+        }
+
+        if (idsToDelete.Count > 0)
+        {
+            await searchClient.DeleteDocumentsAsync("Id", idsToDelete);
+        }
+    }
 }

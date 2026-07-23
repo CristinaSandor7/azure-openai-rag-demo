@@ -1,7 +1,6 @@
 ﻿using Azure.AI.OpenAI;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Models;
-using RagDemo.Data;
 using RagDemo.Models;
 
 namespace RagDemo.Services;
@@ -12,11 +11,13 @@ public class RagService
     private readonly SearchIndexService _searchIndexService;
     private readonly string _chatDeploymentName;
     private readonly string _embeddingDeploymentName;
+    private readonly BlobStorageService _blobStorageService;
 
-    public RagService(AzureOpenAIClient openAiClient, SearchIndexService searchIndexService, IConfiguration config)
+    public RagService(AzureOpenAIClient openAiClient, SearchIndexService searchIndexService, BlobStorageService blobStorageService, IConfiguration config)
     {
         _openAiClient = openAiClient;
         _searchIndexService = searchIndexService;
+        _blobStorageService = blobStorageService;
         _chatDeploymentName = config["AzureOpenAI:DeploymentName"]!;
         _embeddingDeploymentName = config["AzureOpenAI:EmbeddingDeploymentName"]!;
     }
@@ -31,10 +32,12 @@ public class RagService
             return;
         }
 
+        var products = await _blobStorageService.LoadProductsAsync();
+
         var embeddingClient = _openAiClient.GetEmbeddingClient(_embeddingDeploymentName);
         var productsToUpload = new List<SearchProduct>();
 
-        foreach (var product in ProductData.All)
+        foreach (var product in products)
         {
             var text = $"{product.Name}: {product.Description}";
             var embeddingResponse = await embeddingClient.GenerateEmbeddingAsync(text);
